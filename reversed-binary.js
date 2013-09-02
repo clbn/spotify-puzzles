@@ -1,7 +1,7 @@
-﻿var dec = 47;
+﻿var dec = 22;
 var bin = dec.toString(2).split('');
 
-for (var i=0; i<bin.length/2; i++) {
+for (var i=0; i<=bin.length/2-1; i++) {
   if (bin[i] !== bin[bin.length-i-1]) {
     // Swapping 0 and 1
     bin[i] = [1, 0][ bin[i] ];
