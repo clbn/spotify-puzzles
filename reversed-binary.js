@@ -1,13 +1,6 @@
-﻿var readline = require('readline');
-
-var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.on('line', function (line) {
-  rl.write(getReversedBinary(parseInt(line, 10)).toString());
-  rl.close();
+﻿process.stdin.on('data', function(input) {
+  process.stdout.write(getReversedBinary(parseInt(input, 10)).toString() + '\n');
+  process.exit();
 });
 
 var getReversedBinary = function(dec) {
