@@ -21,20 +21,26 @@ var getBestSongs = function(songs, selectionCount) {
   var i;
   for (i=0; i<listNumber; i++) {
     // Quality = ListeningFrequency * PositionInList
-    songs[i][0] = songs[i][0] * (i+1);
+    songs[i][1] = songs[i][1] * songs[i][0];
   }
   songs.sort(function(a, b) {
-    return (b[0] - a[0]);
+    // ORDER BY quality DESC, position ASC
+    return (b[1] - a[1]) || (a[0] - b[0]);
   });
   return songs.slice(0, selectionCount);
 };
 
 var listNumber = input[0][0];
 var selectionNumber = input[0][1];
-var songs = input.slice(1);
+var songs = [];
+var i;
+
+for (i=1; i<input.length; i++) {
+  songs.push([ i, input[i][0], input[i][1] ]);
+}
 
 var selectedSongs = getBestSongs(songs, selectionNumber);
 
-for (var i=0; i<selectedSongs.length; i++) {
-  console.log(selectedSongs[i][1]);
+for (i=0; i<selectedSongs.length; i++) {
+  console.log(selectedSongs[i][2]);
 }
